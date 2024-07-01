@@ -48,17 +48,43 @@ FLUSH PRIVILEGES;
     - typeorm 0.2.30 사용
     - node는 18.9 사용
 
-5. route 파일 생성 (Controller 에 새로운 path를 만들때 마다 실행해야 함)
+5. 환경파일 생성
+아래와 같이 히든파일인 .env 파일 생성해야 함
+    ``` 
+    #NODE_ENV=production
+    NODE_ENV=development
+
+    DB_HOST=localhost
+    DB_USER=dbuser1
+    DB_PASS=1111
+    DB_NAME=testdb
+    DB_PORT=3306
+
+    TYPEORM_TIMEZONE="+09:00"
+
+    AWS_ACCESS_KEY_ID=AWSXXXXXXXXXX
+    AWS_SECRET_ACCESS_KEY=AWSXXXXXXXXXXXXXX
+    AWS_S3_REGION=ap-northeast-2
+    AWS_S3_BUCKET=AWSXXXXXXXXXXXX
+
+
+    APP_PORT=9000
+
+    SECRET=ffafdaf577d5d8ab2ebccfa76e4e07800177884283407a2cdbaf9b09de162608a59fdb2d4157ec1259be99cb76a88ba89e0f151803e0dd7d79a3305cb455f25b
+    ```
+
+
+6. route 파일 생성 (Controller 에 새로운 path를 만들때 마다 실행해야 함)
     ```
     yarn tsoa
     ```
-6. 개발서버 시작
+7. 개발서버 시작
     ```
     yarn dev
     ```    
 
 
-7. API 테스트 - http://localhost:9000/api-docs/ 
+8. API 테스트 - http://localhost:9000/api-docs/ 
     1. auth/user/register 로 User 생성 테스트
     2. auth/user/login 으로 위에서 생성한 ID/Password로 로그인 테스트
 ---
@@ -112,31 +138,7 @@ client에서 multi-part로 넘기고, 서버에서 아래코드 사용하면 AWS
 https://tsoa-community.github.io/docs/getting-started.html
 
 
-[운영환경 설정사항]
-1. 환경파일
-``` 
-.env
-#NODE_ENV=production
-NODE_ENV=development
-
-DB_HOST=localhost
-DB_USER=dbuser1
-DB_PASS=1111
-DB_NAME=testdb
-DB_PORT=3306
-
-TYPEORM_TIMEZONE="+09:00"
-
-AWS_ACCESS_KEY_ID=AWSXXXXXXXXXX
-AWS_SECRET_ACCESS_KEY=AWSXXXXXXXXXXXXXX
-AWS_S3_REGION=ap-northeast-2
-AWS_S3_BUCKET=AWSXXXXXXXXXXXX
-
-
-APP_PORT=9000
-
-SECRET=ffafdaf577d5d8ab2ebccfa76e4e07800177884283407a2cdbaf9b09de162608a59fdb2d4157ec1259be99cb76a88ba89e0f151803e0dd7d79a3305cb455f25b
-```
+## [중요 운영환경 관련 내용]
 
 2. server.ts에 서버 주소 설정
 
@@ -146,7 +148,7 @@ pm2를 설치하여 아래와 같이 daemon으로 구동해야 함.
 실행: yarn pm2:start
 종료: yarn pm2:stop
 ```
-4. 위에서 사용하는 secret은 64비트로 아래코드로 임의 생성하여 Update
+4. .env에서 사용하는 secret은 64비트로 아래코드로 임의 생성하여 Update
 ```
 const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
