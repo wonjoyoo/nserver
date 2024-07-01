@@ -140,15 +140,15 @@ https://tsoa-community.github.io/docs/getting-started.html
 
 ## [중요 운영환경 관련 내용]
 
-2. server.ts에 서버 주소 설정
+1. server.ts에 서버 주소 설정
 
-3. ts-node pm2설치
+2. ts-node pm2설치
 pm2를 설치하여 아래와 같이 daemon으로 구동해야 함.
 ```
 실행: yarn pm2:start
 종료: yarn pm2:stop
 ```
-4. .env에서 사용하는 secret은 64비트로 아래코드로 임의 생성하여 Update
+3. .env에서 사용하는 secret은 64비트로 아래코드로 임의 생성하여 Update
 ```
 const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
