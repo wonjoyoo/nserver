@@ -1,0 +1,28 @@
+{
+  "entryFile": "src/app.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/controllers/**/*"
+  ],
+  "spec": {
+    "basePath": "/api",
+    "outputDirectory": "docs",
+    "specVersion": 3,
+    "securityDefinitions": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "access_token",
+        "in": "header"
+      }
+    },
+    "specMerging": "recursive"
+  },
+  "routes": {
+    "basePath": "/api",
+    "authenticationModule": "./src/middleware/jwtMiddleware.ts",
+    "routesDir": "./src/routes"
+  },
+  "ignore": [
+    "**/node_modules/**"
+  ]
+}
