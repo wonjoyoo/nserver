@@ -1,11 +1,12 @@
 # TypeORM 기반 API Server
 
-## [Mysql설치 8.0.37]
+## [데이터베이스 구성]
+1. mysql 8.0.37 (AWS RDS 최신버전)
 
-1. Database 생성
+2. Database 생성
 Create Database testdb;
 
-2. User생성
+3. User생성
 ```
 CREATE USER 'dbuser1'@'%' IDENTIFIED BY '1111';
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'dbuser1'@'%' WITH GRANT OPTION;
@@ -13,7 +14,7 @@ GRANT CREATE TEMPORARY TABLES ON testdb.* TO 'dbuser1'@'%';
 FLUSH PRIVILEGES;
 ```
 
-3. 테이블 생성
+4. 테이블 생성
     ```
     CREATE TABLE testdb.`User` (
     `id` int NOT NULL AUTO_INCREMENT,
